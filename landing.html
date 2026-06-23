@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>用 AI 做了一份投资人愿意读完的商业计划书 · 顺手记录一下</title>
+<meta name="description" content="一个完全用 AI 工作流从 0 到 1 做出来的商业计划书（含 10 个模块 · 16 张演示幻灯片 · 完整融资方案）。顺手把方法论记下来，如果你也想学、想一起玩、想看看完整作品，欢迎来找我。" />
+<meta property="og:title" content="用 AI 做了一份投资人愿意读完的商业计划书" />
+<meta property="og:description" content="记录 + 作品 + 方法论 + 找人一起玩" />
+<meta property="og:image" content="assets/bp-1-zhaiyu.jpeg" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+<style>/* ===== CSS Variables ===== */
+:root{
+  --bg:#FFF9F0;--bg2:#FFF4E1;
+  --surface:rgba(255,255,255,0.55);--surface2:rgba(255,255,255,0.75);
+  --border:rgba(232,154,60,0.18);--border-hi:rgba(232,154,60,0.35);
+  --text:#5C3D2E;--text-dim:#7A5238;--text-mute:#A8896E;
+  --primary:#F4B860;--primary2:#E89A3C;--primary-deep:#C77F25;
+  --accent:#F4B860;--green:#22C55E;
+  --grad-1:linear-gradient(135deg,#F4B860 0%,#E89A3C 100%);
+  --grad-2:linear-gradient(135deg,#FFF4E1 0%,#FFD89A 100%);
+  --grad-3:linear-gradient(135deg,#FFFBF5 0%,#FFE8C5 100%);
+  --glass:rgba(255,255,255,0.55);
+  --glass-hi:rgba(255,255,255,0.78);
+  --glass-border:rgba(255,255,255,0.7);
+  --shadow-1:0 4px 24px rgba(232,154,60,0.10);
+  --shadow-2:0 12px 40px rgba(232,154,60,0.18);
+  --shadow-glass:0 8px 32px rgba(232,154,60,0.10),inset 0 1px 0 rgba(255,255,255,0.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:var(--bg);color:var(--text);
+  font-family:'Noto Sans SC','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;overflow-x:hidden;
+}
+body{line-height:1.6}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+.grid-bg{display:none}
+.glow-orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:.5;pointer-events:none;z-index:0;animation:float 18s ease-in-out infinite}
+.glow-orb.a{width:600px;height:600px;background:#FFD89A;top:-200px;left:-200px}
+.glow-orb.b{width:500px;height:500px;background:#F4B860;bottom:-150px;right:-150px;opacity:.3;animation-delay:-9s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.1)}}
+
+.container{max-width:1180px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+@media(max-width:640px){.container{padding:0 18px}}
+
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(255,249,240,0.85);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:20px;flex-wrap:nowrap;white-space:nowrap;width:100%}
+.brand-dot{width:32px;height:32px;border-radius:50%;background:var(--grad-1);box-shadow:0 4px 14px rgba(244,184,96,.4);display:inline-flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:16px;letter-spacing:.5px;color:var(--text);flex-shrink:0}
+.nav-menu{display:inline-flex;gap:28px;font-size:14px;color:var(--text-dim);flex-shrink:0;white-space:nowrap}
+.nav-menu a{white-space:nowrap}
+.nav-menu a:hover{color:var(--primary-deep)}
+.nav-cta{flex-shrink:0;padding:9px 18px;border-radius:999px;background:var(--grad-1);color:#3A2818;font-weight:700;font-size:13px;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:var(--shadow-2)}
+@media(max-width:960px){.nav-menu{display:none}}
+
+.hero{padding:90px 0 80px;position:relative;overflow:hidden}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,0.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--primary-deep);margin-bottom:28px;animation:fadeUp .8s ease backwards}
+.hero-tag-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px var(--primary);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(28px,4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-1px;margin-bottom:24px;animation:fadeUp .8s .1s ease backwards;max-width:820px}
+.grad{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad-blue{background:linear-gradient(135deg,#2962FF,#1E88E5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);color:var(--text-dim);line-height:1.8;max-width:720px;animation:fadeUp .8s .15s ease backwards;margin-bottom:36px}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s .2s ease backwards;margin-bottom:32px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:14px;background:var(--grad-1);color:#3A2818;font-weight:700;font-size:15px;box-shadow:var(--shadow-1);transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:14px;background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);color:var(--text-deep);font-weight:600;font-size:15px}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;animation:fadeUp .8s .25s ease backwards}
+.hero-meta-item{display:flex;align-items:center;gap:10px}
+.hero-meta-num{font-size:28px;font-weight:900;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-meta-label{font-size:13px;color:var(--text-mute)}
+@media(max-width:640px){.hero{padding:80px 0 60px}.hero-meta{gap:20px}.hero-meta-num{font-size:22px}}
+
+.section-tag{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);font-size:12px;font-weight:700;color:var(--primary-deep);letter-spacing:.5px;margin-bottom:16px}
+.section-title{font-size:clamp(24px,3.5vw,36px);font-weight:900;letter-spacing:-0.5px;line-height:1.2;margin:0 0 16px;color:var(--text)}
+.section-sub{font-size:16px;color:var(--text-dim);line-height:1.7;max-width:720px;margin-bottom:40px}
+
+#works{padding:80px 0}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px}
+.work-card{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-1);transition:transform .3s,border-color .3s,box-shadow .3s}
+.work-card:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 16px 48px rgba(232,154,60,.25)}
+.work-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#fff}
+.work-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.work-card:hover .work-img img{transform:scale(1.04)}
+.work-img-tag{position:absolute;top:12px;left:12px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:11px;font-weight:700;color:var(--primary-deep);letter-spacing:.5px}
+.work-body{padding:22px}
+.work-title{font-size:17px;font-weight:800;margin-bottom:8px;color:var(--text)}
+.work-desc{font-size:14px;color:var(--text-dim);line-height:1.65;margin-bottom:18px}
+.work-stats{display:flex;gap:20px;padding-top:16px;border-top:1px solid var(--border)}
+.work-stat-num{font-size:22px;font-weight:900;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.work-stat-label{font-size:12px;color:var(--text-mute);margin-top:2px}
+@media(max-width:768px){.work-grid{grid-template-columns:1fr}}
+
+#learning{padding:80px 0;background:var(--bg2)}
+.learning{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.learning-step{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:28px;position:relative;box-shadow:var(--shadow-1);transition:transform .3s,border-color .3s,box-shadow .3s}
+.learning-step:hover{transform:translateY(-3px);border-color:var(--primary);box-shadow:0 12px 36px rgba(232,154,60,.18)}
+.learning-num{position:absolute;top:-14px;left:20px;width:36px;height:36px;border-radius:50%;background:var(--grad-1);color:#3A2818;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;box-shadow:0 4px 14px rgba(244,184,96,.35)}
+.learning-icon{font-size:28px;margin-bottom:12px;margin-top:4px}
+.learning-title{font-size:17px;font-weight:800;margin-bottom:8px;color:var(--text)}
+.learning-desc{font-size:14px;color:var(--text-dim);line-height:1.6;margin-bottom:10px}
+.learning-time{display:inline-block;font-size:12px;color:var(--primary-deep);font-weight:600;margin-top:4px}
+@media(max-width:960px){.learning{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.learning{grid-template-columns:1fr}}
+
+.learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px}
+.learn-item{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:28px;display:flex;gap:18px;box-shadow:var(--shadow-1);transition:border-color .3s}
+.learn-item:hover{border-color:var(--primary)}
+.learn-icon{font-size:32px;flex-shrink:0;margin-top:2px}
+.learn-title{font-size:16px;font-weight:800;margin-bottom:8px;color:var(--text)}
+.learn-desc{font-size:14px;color:var(--text-dim);line-height:1.6}
+@media(max-width:768px){.learn-grid{grid-template-columns:1fr}}
+
+#community{padding:80px 0}
+.community{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
+.community-card{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:18px;padding:28px;position:relative;overflow:hidden;box-shadow:var(--shadow-1);transition:transform .3s,border-color .3s,box-shadow .3s}
+.community-card:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 16px 48px rgba(232,154,60,.25)}
+.community-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-1);opacity:0;transition:opacity .3s}
+.community-card:hover::before{opacity:1}
+.community-emoji{font-size:36px;margin-bottom:14px}
+.community-title{font-size:20px;font-weight:800;margin-bottom:6px;color:var(--text)}
+.community-tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--grad-2);font-size:11px;font-weight:700;color:var(--primary-deep);margin-bottom:12px}
+.community-desc{font-size:13px;color:var(--text-mute);line-height:1.7;margin-top:8px}
+.community-desc li{padding-left:16px;position:relative;list-style:none;margin-bottom:5px}
+.community-desc li::before{content:'·';position:absolute;left:2px;color:var(--primary);font-weight:800}
+@media(max-width:960px){.community{grid-template-columns:1fr}}
+
+.project-detail{margin-top:36px}
+.project-detail-title{font-size:clamp(20px,3vw,28px);font-weight:900;text-align:center;margin-bottom:24px;color:var(--text)}
+.project-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.project-detail-card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:16px;padding:24px;box-shadow:var(--shadow-1)}
+.project-detail-emoji{font-size:28px;margin-bottom:10px}
+.project-detail-card h4{font-size:16px;font-weight:800;margin-bottom:8px;color:var(--text)}
+.project-detail-card p{font-size:14px;color:var(--text-dim);line-height:1.65}
+@media(max-width:768px){.project-detail-grid{grid-template-columns:1fr}}
+
+#about{padding:60px 0}
+.about-card{display:flex;gap:32px;align-items:flex-start;background:var(--glass-hi);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:24px;padding:36px;box-shadow:var(--shadow-glass)}
+.about-avatar{width:96px;height:96px;flex-shrink:0;border-radius:50%;background:var(--grad-1);display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 8px 24px rgba(232,154,60,.35)}
+.about-body{flex:1}
+.about-title{font-size:clamp(24px,3.5vw,36px);font-weight:900;letter-spacing:-0.5px;line-height:1.2;margin:8px 0 16px;color:var(--text)}
+.about-text{font-size:15px;color:var(--text-dim);line-height:1.9;margin-bottom:0}
+@media(max-width:640px){.about-card{flex-direction:column;align-items:center;text-align:center;padding:28px 22px}.about-avatar{margin-bottom:16px}}
+
+#contact{padding:80px 0}
+.cta-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cta-card{background:var(--glass-hi);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);border:1px solid var(--glass-border);border-radius:24px;padding:48px;box-shadow:var(--shadow-glass);text-align:center}
+.cta-title{font-size:clamp(24px,3.5vw,36px);font-weight:900;margin-bottom:12px;color:var(--text)}
+.cta-sub{font-size:16px;color:var(--text-dim);line-height:1.7;margin-bottom:36px}
+.cta-row{display:flex;gap:36px;align-items:flex-start;justify-content:center}
+.cta-qr{width:180px;height:180px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;padding:8px;flex-shrink:0;box-shadow:0 8px 32px rgba(232,154,60,.25);border:2px solid rgba(244,184,96,.3)}
+.cta-qr img{width:100%;height:100%;object-fit:contain}
+.cta-info{flex:1;min-width:240px;text-align:left}
+.cta-info-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:15px;color:var(--text)}
+.cta-info-row:last-of-type{border-bottom:none}
+.cta-info-icon{font-size:20px;flex-shrink:0;width:28px;text-align:center}
+.cta-info-label{font-size:12px;color:var(--text-mute);margin-bottom:2px}
+.cta-info-value{font-weight:600;color:var(--text);word-break:break-all}
+.cta-copy{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:12px 24px;border-radius:12px;background:var(--grad-1);color:#3A2818;font-weight:700;font-size:14px;box-shadow:var(--shadow-1);transition:transform .2s,box-shadow .2s}
+.cta-copy:hover{transform:translateY(-1px);box-shadow:var(--shadow-2)}
+.cta-copy.copied{background:var(--green);color:#fff}
+@media(max-width:640px){.cta-card{padding:32px 24px}.cta-row{flex-direction:column;align-items:center}.cta-info{text-align:left}}
+
+.footer{padding:40px 0 30px;border-top:1px solid var(--border);text-align:center;color:var(--text-mute);font-size:13px}
+.footer a{color:var(--text-dim);margin:0 12px;transition:color .2s}
+.footer a:hover{color:var(--primary-deep)}
+
+.float-hint{position:fixed;bottom:20px;right:20px;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,0.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);font-size:13px;color:var(--text-dim);box-shadow:var(--shadow-1);animation:bob 3s ease-in-out infinite;z-index:40}
+.float-hint-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media(max-width:640px){.float-hint{font-size:12px;padding:8px 14px;right:16px;bottom:16px}}
+/* ===== Animations ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== Lightbox ===== */
+.lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;cursor:pointer}
+.lightbox.active{display:flex}
+.lightbox-img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.lightbox-close{position:absolute;top:20px;right:28px;font-size:36px;color:#fff;cursor:pointer;z-index:10000;font-weight:300;line-height:1}
+.work-img{cursor:zoom-in}
+</style>
+</head>
+
+<body>
+<div class="grid-bg"></div>
+<div class="glow-orb a"></div>
+<div class="glow-orb b"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand">
+      <div class="brand-dot">✦</div>
+      <span>笔记 · 案例 · Demo · 找人</span>
+    </a>
+    <div class="nav-menu">
+      <a href="#works">案例</a>
+      <a href="#method">方法</a>
+      <a href="#project">项目</a>
+      <a href="#about">我</a>
+      <a href="#contact">联系</a>
+    </div>
+    <a href="#contact" class="nav-cta">找我聊聊 →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      <span>一个用 AI 做的 BP 作品 · 顺手把过程记了下来</span>
+    </div>
+    <div style="display:flex;justify-content:center;margin-bottom:18px;animation:fadeUp .8s .05s ease backwards">
+      <span class="tool-badge">
+        <span style="font-size:16px">🛡️</span>
+        <span><strong>用的是 Hermes</strong> · 数据全在本地 · 模型自己选 · 不是 OpenAI/Anthropic 那些</span>
+      </span>
+    </div>
+    <h1>
+      我用 AI <span class="grad">4 小时</span> 做了一份<br/>
+      投资人<span class="grad-blue">愿意读完</span>的商业计划书
+    </h1>
+    <p class="hero-sub">
+      不是设计师排两周，不是 PPT 模板套。是一个 <strong style="color:var(--text)">完全用 AI 工作流从 0 到 1</strong> 跑出来的商业计划书，10 个模块 · 16 张可演示幻灯片 · 包含融资方案和股份结构。
+      <br/><br/>
+      顺手把过程拆解记了下来，也把作品留在这里。如果你也在研究 <strong style="color:var(--primary)">怎么用 AI 做内容/做产品</strong>，或者觉得我们正在做的事有意思，欢迎来聊。
+    </p>
+    <div class="hero-cta-row">
+      <a href="#works" class="btn-primary">
+        👀 先看案例长什么样
+      </a>
+      <a href="#learning" class="btn-ghost">
+        📚 我也想学怎么用 AI 做
+      </a>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">4h</div>
+        <div class="hero-meta-label">完整做一份 BP</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">10</div>
+        <div class="hero-meta-label">专业模块</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">2周</div>
+        <div class="hero-meta-label">传统方式耗时</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">∞</div>
+        <div class="hero-meta-label">可以反复用</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+<!-- 作品展示区 -->
+<section id="works">
+  <div class="container">
+    <span class="section-tag">CASE · 作品长这样</span>
+    <h2 class="section-title">一份投资人愿意读完的 BP 长什么样</h2>
+    <p class="section-sub">
+      这是我们用 AI 全流程做的真实作品（脱敏后展示）。包含 10 个模块 · 16 张可演示幻灯片 · 完整融资方案 · 股份结构 · 路线图。
+    </p>
+
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="work-img" onclick="openLightbox(this)" style="cursor:pointer">
+          <img src="assets/bp-1-zhaiyu.jpeg" alt="品牌叙事" loading="lazy" />
+          <span class="work-img-tag">品牌叙事</span>
+        </div>
+        <div class="work-body">
+          <div class="work-title">模块 1 · 品牌矩阵叙事</div>
+          <p class="work-desc">不是"公司介绍"模板，是讲清楚"母 IP + 子板块"的关系图谱。投资人一眼看懂业务边界。</p>
+          <div class="work-stats">
+            <div><div class="work-stat-num">8</div><div class="work-stat-label">核心模块</div></div>
+            <div><div class="work-stat-num">100%</div><div class="work-stat-label">投资人视角</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-img" onclick="openLightbox(this)" style="cursor:pointer">
+          <img src="assets/bp-2-funding.jpeg" alt="融资方案" loading="lazy" />
+          <span class="work-img-tag">融资方案</span>
+        </div>
+        <div class="work-body">
+          <div class="work-title">模块 2 · 融资计划 + 股份结构</div>
+          <p class="work-desc">不是"我要融 100 万"那么浅。包括资金用途分项 · 人力股/资本股设计 · 3 档投资比例 · 5 年估值路径。</p>
+          <div class="work-stats">
+            <div><div class="work-stat-num">30%+70%</div><div class="work-stat-label">人力/资本股</div></div>
+            <div><div class="work-stat-num">5Y</div><div class="work-stat-label">估值路径</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-img" onclick="openLightbox(this)" style="cursor:pointer">
+          <img src="assets/bp-3-slide.jpeg" alt="16 张幻灯片" loading="lazy" />
+          <span class="work-img-tag">演示幻灯片</span>
+        </div>
+        <div class="work-body">
+          <div class="work-title">模块 3 · 16 页演示幻灯片</div>
+          <p class="work-desc">不仅是文档，还能直接演示。投资人会议现场投屏 · 全屏播放 · 一气呵成讲完故事。</p>
+          <div class="work-stats">
+            <div><div class="work-stat-num">16</div><div class="work-stat-label">张幻灯片</div></div>
+            <div><div class="work-stat-num">∞</div><div class="work-stat-label">全屏播放</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-img" style="background:linear-gradient(135deg,#1A6BFF 0%,#0F4DC8 100%);display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;color:#fff;padding:30px">
+            <div style="font-size:60px;font-weight:900;line-height:1">+</div>
+            <div style="font-size:14px;margin-top:8px;font-weight:600">还有更多模块 · 协同 · 路线图 · 选址 · 演示</div>
+          </div>
+          <span class="work-img-tag">还有 7+ 个</span>
+        </div>
+        <div class="work-body">
+          <div class="work-title">模块 4-10 · 双板块协同 · 路线图 · 选址地图 · 演示版</div>
+          <p class="work-desc">从双板块协同、3 年路线图、选址分析、融资估值到演示幻灯片，一份 BP 全打通。</p>
+          <div class="work-stats">
+            <div><div class="work-stat-num">10</div><div class="work-stat-label">总模块数</div></div>
+            <div><div class="work-stat-num">1</div><div class="work-stat-label">份完整 BP</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 学习路径：知识付费 -->
+<section id="method" style="background:var(--bg2)">
+  <div class="container">
+    <span class="section-tag">METHOD · 怎么开始的</span>
+    <h2 class="section-title">其实没你想的那么复杂</h2>
+    <p class="section-sub">
+      网上很多教程一上来就讲"1 小时战略访谈"——别被劝退。<br/>
+      我自己做这件事的过程更接近：<strong style="color:var(--primary-deep)">想到一个模糊的方向就开干，边做边聊，内容是长出来的</strong>。
+    </p>
+
+    <div class="learning">
+      <div class="learning-step">
+        <div class="learning-num">01</div>
+        <div class="learning-icon">🧭</div>
+        <div class="learning-title">一句话开干</div>
+        <p class="learning-desc">不需要先做访谈 / 写商业计划 / 画流程图。你说一句"我想做 XX"，AI 直接出第一版。哪怕方向只是"我想做宠物方向的"。</p>
+        <span class="learning-time">~10min</span>
+      </div>
+      <div class="learning-step">
+        <div class="learning-num">02</div>
+        <div class="learning-icon">🔧</div>
+        <div class="learning-title">边做边聊</div>
+        <p class="learning-desc">第一版肯定不满意，没事。每一步迭代都让产品更接近你想要的。3-5 轮下来，你就发现要表达的东西慢慢成型了。</p>
+        <span class="learning-time">每轮 ~30min</span>
+      </div>
+      <div class="learning-step">
+        <div class="learning-num">03</div>
+        <div class="learning-icon">📦</div>
+        <div class="learning-title">git 兜底 · 随时回滚</div>
+        <p class="learning-desc">改得不满意？跟 AI 说“用 git 恢复成之前那个版本”，哪怕描述得很模糊，AI 也能听懂并帮你回滚。每一步自动存档，不怕试错。这是和“传统重做”最大的区别。</p>
+        <span class="learning-time">~5s 回滚</span>
+      </div>
+      <div class="learning-step">
+        <div class="learning-num">04</div>
+        <div class="learning-icon">🚀</div>
+        <div class="learning-title">上线 · 迭代 · 复盘</div>
+        <p class="learning-desc">发布到网上 · 收到真实反馈 · 用同样方法再迭代一轮。从 0 到 1 不需要 2 周；可能只需要 1 个晚上。</p>
+        <span class="learning-time">~4h 总投入</span>
+      </div>
+    </div>
+
+    <h3 class="section-title" style="font-size:24px;margin-top:80px">如果你也想到一个模糊的方向</h3>
+    <p class="section-sub" style="margin-bottom:24px">
+      你可能正在想：我也想做一个 / 我有个想法不知道从哪开始 / 我想做但不会做。<br/>
+      不需要等到想清楚，<strong style="color:var(--primary-deep)">想到一句话就开始，做出来的比想出来的清楚</strong>。
+    </p>
+
+    <div class="learn-grid">
+      <div class="learn-item">
+        <div class="learn-icon">📚</div>
+        <div>
+          <div class="learn-title">想看我怎么做的</div>
+          <p class="learn-desc">每个步骤用到的工具 + 提示词模板，可以分享给认真想学的人（评论区/私信告诉我）。</p>
+          <span class="learn-tag">📩 随便聊聊</span>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-icon">🛠️</div>
+        <div>
+          <div class="learn-title">想让我帮你做</div>
+          <p class="learn-desc">你有一句话想法 · 我用同样的工作流帮你做出完整作品（不限于 BP · 网站 · 课程 · 工具都行）。</p>
+          <span class="learn-tag">📩 邮箱细聊</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 宅域项目（聚焦宅域项目） -->
+<section id="project">
+  <div class="container">
+    <span class="section-tag">PROJECT · 宅域在做的这件事</span>
+    <h2 class="section-title">如果这件事 · 让你觉得有点意思</h2>
+    <p class="section-sub">
+      我在做的这个项目叫<strong style="color:var(--text)">宅域</strong>——母 IP 下面有<strong style="color:var(--text)">宅咪（宠物线）+ 宅电（电竞线）</strong>，蓝图是<strong>以「宅」为根基，构筑属于年轻人的完整生活疆域</strong>。<br/><br/>
+      <strong>AI 是这件事里最重要的工具之一</strong>，也是我们判断它能成立的原因。随着 AI 的发展，我们会紧跟最新技术，把所有能用 AI 替代的工作都替代，让这个品牌本身也成为一个"紧跟时代"的品牌。<br/><br/>
+      店铺还没正式开起来，现在还在筹备阶段。如果你对这个方向感兴趣，或者也想做点什么，欢迎聊聊。
+      <strong style="color:var(--primary-deep)">如果你对这件事有兴趣 · 看好这个方向 · 想投资或一起运营，欢迎来认识一下。先聊，看彼此合不合得来。</strong>
+    </p>
+
+    <div class="community">
+      <div class="community-card">
+        <div class="community-emoji">🏠</div>
+        <div class="community-title">对宅咪 / 宅电本身感兴趣</div>
+        <span class="community-tag">先聊聊</span>
+        <ul class="community-desc">
+          <li>关注宠物 / 电竞 / 社区小店方向</li>
+          <li>住在临港 / 上海 / 同类城市</li>
+          <li>想了解我们具体在做什么</li>
+          <li>可能是消费者、用户、合作者</li>
+          <li>不需要立刻合作 · 先认识</li>
+        </ul>
+      </div>
+      <div class="community-card">
+        <div class="community-emoji">🤝</div>
+        <div class="community-title">愿意一起运营宅域</div>
+        <span class="community-tag">细聊</span>
+        <ul class="community-desc">
+          <li>看好"母 IP + 多板块小店"模式</li>
+          <li>愿意投入时间一起打磨运营</li>
+          <li>可以是内容 / 选品 / 社群 / BD 任一角色</li>
+          <li>不急着回报 · 认可复利</li>
+          <li>先聊 1-2 次看节奏合不合</li>
+        </ul>
+      </div>
+      <div class="community-card">
+        <div class="community-emoji">💎</div>
+        <div class="community-title">看好这件事愿意支持</div>
+        <span class="community-tag">深聊</span>
+        <ul class="community-desc">
+          <li>关注早期小店 / 社区生活赛道</li>
+          <li>愿意小额参与早期项目</li>
+          <li>认可"长期 + 复利"而不是"快速做大"</li>
+          <li>可以是资金 / 资源 / 业务对接</li>
+          <li>长期主义 · 不追短期回报</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 宅域具体在做的事 -->
+    <div class="project-detail">
+      <h3 class="project-detail-title">宅域到底在做什么 · 展开说说</h3>
+      <div class="project-detail-grid">
+        <div class="project-detail-item">
+          <div class="project-detail-emoji">🐱</div>
+          <h4>宅咪（宠物线 · 已落地）</h4>
+          <p>宠物上门洗护 + 到店洗护 · 上门接 → 到店洗 → 送回，全程录像。解决上班族没时间带宠物去店的痛点。上海浦东已开首店。</p>
+        </div>
+        <div class="project-detail-item">
+          <div class="project-detail-emoji">🎮</div>
+          <h4>宅电（电竞线 · 已落地）</h4>
+          <p>电竞空间 · 上门氛围搭建 · 灯带 / 理线 / 桌面支架 / 3D 打印定制 · 副营电竞周边零售。门店落地与宅咪共享 3 平米展示角。</p>
+        </div>
+        <div class="project-detail-item">
+          <div class="project-detail-emoji">🏪</div>
+          <h4>最后一公里 · 实体小店群</h4>
+          <p>母 IP「宅域」+ 多板块小店群模式。一个 49㎡ 的店 = 洗护 + 电竞 + 选品零售，共享会员体系、共享供应链、共享 SCRM，坪效比单业态高 60%。</p>
+        </div>
+        <div class="project-detail-item">
+          <div class="project-detail-emoji">👥</div>
+          <h4>在找什么样的人</h4>
+          <p>① 合伙人 · 一起运营宅咪/宅电日常；② 早期支持者 · 看好母 IP + 多板块模式愿意小额参与；③ 潜在用户 · 在临港/上海/同线城市，告诉我你需要什么服务。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- 我是谁 -->
+<section id="about" style="padding-top:60px">
+  <div class="container">
+    <div class="about-card">
+      <div class="about-avatar">🙋</div>
+      <div class="about-body">
+        <span class="section-tag">ABOUT · 一个普通人的真实背景</span>
+        <h2 class="about-title">不是搞 AI 的 · 是搞半导体 + 数据分析的</h2>
+        <p class="about-text">
+          本科人工智能专业，毕业后做过一段时间工厂智能化相关，后来发现自己更适合做有创造性的东西。<br/><br/>
+          会用 Python/VBA/SQL/C，懂 MES/RTD 这些工业系统。技术背景偏<strong>数据 + 自动化</strong>，不是网红博主那种 AI课程讲师。<br/><br/>
+          做过游戏直播、聊天直播，自学剪辑，在小红书/抖音/快手发过不同赛道的笔记；大学自学软件开发并盈利过 5000+。这些经历最终都指向同一件事：<strong>找到一个方向就干</strong>。<br/><br/>
+          <strong>品牌叫宅域</strong>，是我判断方向后觉得该干、就认真在推进的事。现在还在筹备阶段，如果你也觉得这件事有意思，或者对这类服务方向感兴趣，我们可以先聊聊看。<br/><br/>
+          我能帮你的事：<strong style="color:var(--primary-deep)">用 AI 帮你做出第一版（网站 / BP / 工具）</strong>，哪怕你只有一句模糊想法。从今天开始做，比从下周开始做好。
+        </p>
+      </div>
+    </div>
+  </div>
+
+</section>
+<section id="contact" class="cta-section">
+  <div class="container">
+    <div class="cta-card">
+      <h2 class="cta-title">看到这里 · 觉得有意思就聊一下</h2>
+      <p class="cta-sub">
+        发邮件也行。<br/>
+        告诉我：<strong style="color:var(--primary)">你最感兴趣哪一段</strong>，是作品 / 方法 / 还是找人这件事？
+      </p>
+      <div class="cta-row">
+        <div class="cta-qr">
+          <img src="assets/qrcode-placeholder.png" alt="微信二维码" />
+        </div>
+        <div class="cta-info">
+          <div class="cta-info-row">
+            <div class="cta-info-icon">💬</div>
+            <div>
+              <div class="cta-info-label">微信号</div>
+              <div class="cta-info-value" id="wechatId">请扫码添加</div>
+            </div>
+          </div>
+          <div class="cta-info-row">
+            <div class="cta-info-icon">📧</div>
+            <div>
+              <div class="cta-info-label">邮箱</div>
+              <div class="cta-info-value">1139080847@qq.com</div>
+            </div>
+          </div>
+          <div class="cta-info-row">
+            <div class="cta-info-icon">📍</div>
+            <div>
+              <div class="cta-info-label">协作方式</div>
+              <div class="cta-info-value" style="font-family:inherit">远程 · 异步 · 不坐班</div>
+            </div>
+          </div>
+          <button class="cta-copy" onclick="copyEmail(this)">
+            <span>📋</span>
+            <span>一键复制邮箱</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      © 2026 一个用 AI 做 BP 的人 · 随手记录 · 慢慢迭代<br/>
+      <a href="#works">作品</a> · <a href="#learning">怎么学</a> · <a href="#community">一起玩</a> · <a href="#contact">找我</a>
+    </p>
+  </div>
+</footer>
+
+<div class="float-hint">
+  <span class="float-hint-dot"></span>
+  <span>觉得有意思就发个邮件 · 不强求 · 慢慢聊</span>
+</div>
+
+<script>
+function openLightbox(el){
+  const img = el.querySelector("img");
+  const src = img ? img.src : "";
+  const lb = document.getElementById("lightbox");
+  const im = lb.querySelector(".lightbox-img");
+  if(src){
+    im.src = src;
+    lb.classList.add("active");
+  }
+}
+function closeLightbox(){
+  document.getElementById("lightbox").classList.remove("active");
+}
+
+function copyEmail(btn){
+  const email = '1139080847@qq.com';
+  navigator.clipboard.writeText(email).then(() => {
+    btn.classList.add('copied');
+    btn.querySelector('span:last-child').textContent = '已复制 ✓';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.querySelector('span:last-child').textContent = '一键复制邮箱';
+    }, 2500);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = email;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    btn.classList.add('copied');
+    btn.querySelector('span:last-child').textContent = '已复制 ✓';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.querySelector('span:last-child').textContent = '一键复制邮箱';
+    }, 2500);
+  });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){
+      target.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+  });
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('in-view');
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('section .container > *').forEach(el => {
+  el.style.opacity = '1';
+  el.style.transform = 'translateY(0)';
+  obs.observe(el);
+});
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <img class="lightbox-img" src="" alt="放大预览" />
+</div>
+
+</script>
+</body>
+</html>
